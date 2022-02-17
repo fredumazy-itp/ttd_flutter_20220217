@@ -24,17 +24,32 @@ class SavedWords extends StatelessWidget {
 
   Widget mapPairToWidget(WordPair pair) {
     return Card(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network('https://picsum.photos/400/100?q=${pair.asPascalCase}'),
-          Text(
-            pair.asPascalCase,
-            style: const TextStyle(
-              fontSize: 26,
+      child: SizedBox(
+        height: 150,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.network(
+              'https://picsum.photos/400/200?q=${pair.asPascalCase}',
+              fit: BoxFit.fill,
             ),
-          ),
-        ],
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  bottom: 8.0,
+                ),
+                child: Text(
+                  pair.asPascalCase,
+                  style: const TextStyle(
+                    fontSize: 26,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
