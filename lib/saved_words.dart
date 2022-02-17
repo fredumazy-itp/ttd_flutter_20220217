@@ -23,6 +23,19 @@ class SavedWords extends StatelessWidget {
   }
 
   Widget mapPairToWidget(WordPair pair) {
-    return Text(pair.asPascalCase);
+    return Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.network('https://picsum.photos/400/100?q=${pair.asPascalCase}'),
+          Text(
+            pair.asPascalCase,
+            style: const TextStyle(
+              fontSize: 26,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
