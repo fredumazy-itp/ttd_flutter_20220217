@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:random_words/call.dart';
@@ -56,6 +57,7 @@ class SavedWords extends StatelessWidget {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Phonetics(word: pair.first),
               Phonetics(word: pair.second),
@@ -84,11 +86,20 @@ class Phonetics extends StatelessWidget {
           return CircularProgressIndicator();
         }
         final phonetic = snapshot.requireData;
-        return Text(
-          phonetic.text,
-          style: const TextStyle(
-            fontSize: 22,
+        return InkWell(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Text(
+              phonetic.text,
+              style: const TextStyle(
+                fontSize: 22,
+              ),
+            ),
           ),
+          onTap: () {
+            final player = AudioPlayer();
+            player.play('https${phonetic.audio}');
+          },
         );
       },
     );
